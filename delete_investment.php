@@ -44,6 +44,7 @@ if($_POST && isset($_POST['confirm_delete'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excluir Investimento - Carteira de Investimentos</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/stock-ticker.js"></script>
 </head>
 <body>
     <header class="header">

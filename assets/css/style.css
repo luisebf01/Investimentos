@@ -467,4 +467,279 @@ body {
 .bg-input { background-color: var(--bg-input) !important; }
 
 .border-primary { border-color: var(--border-color) !important; }
-.border-light { border-color: var(--border-light) !important; } 
+.border-light { border-color: var(--border-light) !important; }
+
+/* ========================================
+   SISTEMA MULTI-BARRAS DE COTAÇÕES
+======================================== */
+
+/* Container principal das 3 barras */
+.multi-tickers-container {
+    width: 100%;
+    position: relative;
+    z-index: 90;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Configuração base para todas as barras */
+.stock-ticker-container {
+    width: 100%;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    height: 45px;
+}
+
+/* Cores específicas para cada barra */
+.stock-ticker-container.stocks {
+    background: linear-gradient(135deg, rgba(66, 165, 245, 0.15) 0%, rgba(25, 118, 210, 0.15) 100%);
+}
+
+.stock-ticker-container.fiis {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.15) 0%, rgba(56, 142, 60, 0.15) 100%);
+}
+
+.stock-ticker-container.crypto {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 152, 0, 0.15) 100%);
+}
+
+.stock-ticker-wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    max-width: 100%;
+}
+
+/* Labels específicos para cada tipo */
+.stock-ticker-label {
+    padding: 0 1rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    min-width: 120px;
+    color: var(--text-primary);
+}
+
+.stock-ticker-label.stocks {
+    background: linear-gradient(45deg, var(--primary-light), var(--primary-medium));
+}
+
+.stock-ticker-label.fiis {
+    background: linear-gradient(45deg, #4CAF50, #388E3C);
+}
+
+.stock-ticker-label.crypto {
+    background: linear-gradient(45deg, #FFC107, #FF9800);
+}
+
+.stock-ticker-label span {
+    margin-left: 0.5rem;
+}
+
+.stock-ticker-content {
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.stock-ticker-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.stock-ticker-scroll {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    white-space: nowrap;
+    animation: none;
+    gap: 0;
+}
+
+.stock-ticker-scroll.scrolling {
+    animation: scroll-left 120s linear infinite;
+}
+
+.stock-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 1.25rem;
+    height: 100%;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    white-space: nowrap;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+.stock-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.stock-symbol {
+    font-weight: 700;
+    margin-right: 0.75rem;
+    text-align: left;
+}
+
+/* Cores específicas dos símbolos por tipo de ativo */
+.stocks .stock-symbol {
+    color: var(--primary-light);
+}
+
+.fiis .stock-symbol {
+    color: #4CAF50;
+}
+
+.crypto .stock-symbol {
+    color: #FFC107;
+}
+
+.stock-price {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-right: 0.75rem;
+    text-align: right;
+}
+
+.stock-change {
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-align: left;
+}
+
+.stock-change.positive {
+    color: var(--success-color);
+}
+
+.stock-change.negative {
+    color: var(--danger-color);
+}
+
+/* Animação de rolagem infinita */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Responsividade das 3 barras */
+@media (max-width: 768px) {
+    .stock-ticker-container {
+        height: 40px;
+    }
+    
+    .stock-ticker-label {
+        min-width: 80px;
+        padding: 0 0.75rem;
+        font-size: 0.8rem;
+    }
+    
+    .stock-item {
+        padding: 0 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .stock-symbol {
+        margin-right: 0.6rem;
+    }
+    
+    .stock-price {
+        margin-right: 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    .stock-change {
+        font-size: 0.75rem;
+    }
+    
+    .stock-ticker-scroll.scrolling {
+        animation: scroll-left 90s linear infinite;
+    }
+}
+
+@media (max-width: 480px) {
+    .stock-ticker-container {
+        height: 35px;
+    }
+    
+    .stock-ticker-label {
+        min-width: 60px;
+        font-size: 0.75rem;
+    }
+    
+    .stock-item {
+        padding: 0 0.75rem;
+        font-size: 0.75rem;
+    }
+    
+    .stock-symbol {
+        margin-right: 0.5rem;
+    }
+    
+    .stock-price {
+        margin-right: 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .stock-change {
+        font-size: 0.7rem;
+    }
+    
+    .stock-ticker-scroll.scrolling {
+        animation: scroll-left 80s linear infinite;
+    }
+}
+
+/* Efeito hover nas barras (pausar animação) */
+.stock-ticker-container:hover .stock-ticker-scroll.scrolling {
+    animation-play-state: paused;
+}
+
+/* Indicador visual de loading específico */
+.stock-ticker-loading::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 0.5rem;
+}
+
+.stocks .stock-ticker-loading::before {
+    border-top: 2px solid var(--primary-light);
+}
+
+.fiis .stock-ticker-loading::before {
+    border-top: 2px solid #4CAF50;
+}
+
+.crypto .stock-ticker-loading::before {
+    border-top: 2px solid #FFC107;
+}
+
+/* Separador visual entre as barras */
+.stock-ticker-container:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+} 

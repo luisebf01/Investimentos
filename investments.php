@@ -60,6 +60,7 @@ $percentual_geral = $summary['total_investido'] > 0 ?
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <script src="assets/js/stock-ticker.js"></script>
     <header class="header">
         <nav class="navbar">
             <div class="logo">💰 Carteira</div>

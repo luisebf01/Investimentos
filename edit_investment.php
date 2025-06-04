@@ -117,6 +117,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Investimento - Carteira de Investimentos</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/stock-ticker.js"></script>
 </head>
 <body>
     <header class="header">
