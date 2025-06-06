@@ -56,6 +56,9 @@ if($_POST) {
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="investments.php">Investimentos</a></li>
                 <li><a href="add_investment.php" class="active">Adicionar</a></li>
+                <li><a href="faturamento.php">Faturamento</a></li>
+                <li><a href="balanco.php">Balanço</a></li>
+                <li><a href="estatisticas.php">Estatísticas</a></li>
                 <li><a href="profile.php">Perfil</a></li>
                 <li><a href="logout.php">Sair</a></li>
             </ul>

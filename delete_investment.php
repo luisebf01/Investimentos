@@ -52,7 +52,10 @@ if($_POST && isset($_POST['confirm_delete'])) {
             <ul class="nav-links">
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="investments.php">Investimentos</a></li>
-                <li><a href="add_investment.php">Adicionar</a></li>
+                <li><button onclick="openAddInvestmentModal()" class="nav-button">Adicionar</button></li>
+                <li><a href="faturamento.php">Faturamento</a></li>
+                <li><a href="balanco.php">Balanço</a></li>
+                <li><a href="estatisticas.php">Estatísticas</a></li>
                 <li><a href="profile.php">Perfil</a></li>
                 <li><a href="logout.php">Sair</a></li>
             </ul>
@@ -224,6 +227,36 @@ if($_POST && isset($_POST['confirm_delete'])) {
             gap: 0.25rem;
         }
     }
+
+    /* Botão do menu que parece link */
+    .nav-button {
+        background: none;
+        border: none;
+        color: #ccc;
+        font-size: 1rem;
+        font-family: inherit;
+        cursor: pointer;
+        padding: 0;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .nav-button:hover {
+        color: var(--primary-light);
+    }
     </style>
+
+    <script>
+    // Função para abrir modal (será implementada na página que incluir o modal)
+    function openAddInvestmentModal() {
+        // Redirecionar temporariamente até que todas as páginas tenham o modal
+        window.location.href = 'dashboard.php';
+        setTimeout(() => {
+            if (typeof window.openAddInvestmentModal === 'function') {
+                window.openAddInvestmentModal();
+            }
+        }, 100);
+    }
+    </script>
 </body>
 </html> 
